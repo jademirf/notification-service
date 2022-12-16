@@ -22,7 +22,7 @@ export class Notification {
     };
   }
 
-  public getId(): string {
+  public get id(): string {
     return this._id;
   }
 

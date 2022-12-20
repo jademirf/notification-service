@@ -1,10 +1,24 @@
 import { Controller } from '@nestjs/common';
-import { EventPattern } from '@nestjs/microservices';
+import { EventPattern, Payload } from '@nestjs/microservices';
+import { SendNotification } from 'src/application/use-cases/send-notification';
 
+interface SendNotificationPayload {
+  content: string;
+  category: string;
+  recipientId: string;
+}
 @Controller()
 export class NotificationsController {
+  constructor(private sendNotification: SendNotification) {}
+
   @EventPattern('notifications.send-notification')
-  async handleSendNotification() {
-    console.log('testing... 123...');
+  async handleSendNotification(
+    @Payload() { content, category, recipientId }: SendNotificationPayload,
+  ) {
+    await this.sendNotification.execute({
+      content,
+      category,
+      recipientId,
+    });
   }
 }

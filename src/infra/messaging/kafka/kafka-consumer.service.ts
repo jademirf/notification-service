@@ -14,10 +14,8 @@ export class KafkaConsumerService
         brokers: ['fond-ladybird-6645-us1-kafka.upstash.io:9092'],
         sasl: {
           mechanism: 'scram-sha-256',
-          username:
-            'Zm9uZC1sYWR5YmlyZC02NjQ1JKSB9DqKCE3v5pGn7kBiWdz3Vyb_Rd3geUtmAfo',
-          password:
-            'cYh6U1VC3_3PwJnKWBrYBzn1_M_ThUCuKEBE0DJYNKdgIo2I2Ce0EkT5s9pMiXzgrKxJQg==',
+          username: process.env.KAFKA_USERNAME,
+          password: process.env.KAFKA_PASSWORD,
         },
         ssl: true,
       },
